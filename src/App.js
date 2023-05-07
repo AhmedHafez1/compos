@@ -7,7 +7,7 @@ function App() {
     <div>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <div>
-        <Button primary rounded>
+        <Button classes="mb-2" primary rounded>
           Primary
         </Button>
       </div>
