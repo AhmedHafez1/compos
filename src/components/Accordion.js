@@ -6,7 +6,7 @@ const Accordion = ({ items }) => {
   const renderedItems = items.map(({ label, content }, i) => {
     return (
       <div key={i}>
-        <h4>{label}</h4>
+        <h4 onClick={() => setExpandedIndex(i)}>{label}</h4>
         <p>{i === expandedIndex && content}</p>
       </div>
     );
