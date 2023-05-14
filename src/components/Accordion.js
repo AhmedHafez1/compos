@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { GoChevronDown, GoChevronLeft } from 'react-icons/go';
 
 const Accordion = ({ items }) => {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
+  const changeExpandedIndex = (newIndex) => {
+    return () => {
+      if (newIndex === expandedIndex) setExpandedIndex(-1);
+      else setExpandedIndex(newIndex);
+    };
+  };
 
   const renderedItems = items.map(({ label, content }, i) => {
     const isExpanded = i === expandedIndex;
@@ -13,7 +19,7 @@ const Accordion = ({ items }) => {
       <div key={i}>
         <h4
           className="flex justify-between border-b bg-gray-50 p-3 items-center cursor-pointer"
-          onClick={() => setExpandedIndex(i)}
+          onClick={changeExpandedIndex(i)}
         >
           {label}
           {icon}
@@ -24,7 +30,7 @@ const Accordion = ({ items }) => {
     );
   });
 
-  return <div className="border-x border-t rounded">{renderedItems}</div>;
+  return <div className="border-x border-t rounded mb-5">{renderedItems}</div>;
 };
 
 export default Accordion;
