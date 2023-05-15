@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const Dropdwon = ({ options, selectedOption, handleSelect }) => {
+const Dropdwon = ({ options, value, onChange }) => {
   const [open, setOpen] = useState(false);
 
   const toggleOpen = () => setOpen(!open);
   const onSelect = (option) => {
     setOpen(false);
-    handleSelect(option);
+    onChange(option);
   };
 
   const renderedOptions = options.map((option) => (
@@ -15,14 +15,11 @@ const Dropdwon = ({ options, selectedOption, handleSelect }) => {
     </h5>
   ));
 
-  let content = "Select...";
-  if (selectedOption) {
-    content = selectedOption.label;
-  }
+  let labelPlaceHolder = value?.label || "Select...";
 
   return (
     <div>
-      <div onClick={toggleOpen}>{content}</div>
+      <div onClick={toggleOpen}>{labelPlaceHolder}</div>
       {open && <div>{renderedOptions}</div>}
     </div>
   );

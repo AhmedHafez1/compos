@@ -15,8 +15,8 @@ function App() {
     <div>
       <Dropdwon
         options={options}
-        handleSelect={handleSlectedColor}
-        selectedOption={selectedColor}
+        onChange={handleSlectedColor}
+        value={selectedColor}
       ></Dropdwon>
     </div>
   );
