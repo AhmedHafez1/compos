@@ -7,8 +7,14 @@ const Dropdwon = ({ options, value, onChange }) => {
   const componentRef = useRef();
 
   useEffect(() => {
-    console.log(componentRef);
-    return () => {};
+    const checkToCloseDropDown = (event) => {
+      if (!componentRef.current) return;
+      if (!componentRef.current.contains(event.target)) setOpen(false);
+    };
+
+    document.addEventListener('click', checkToCloseDropDown, true);
+
+    return () => document.removeEventListener('click', checkToCloseDropDown);
   }, []);
 
   const toggleOpen = () => setOpen(!isOpen);
