@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Dropdwon = ({ options }) => {
   const [open, setOpen] = useState(false);
+  const componentRef = useRef();
+
+  useEffect(() => {
+    console.log(componentRef);
+    return () => {};
+  }, []);
 
   const toggleOpen = () => setOpen(!open);
   const onSelect = (option) => {
     setOpen(false);
-    console.log(option.label);
   };
 
   const renderedOptions = options.map((option) => (
@@ -14,7 +19,7 @@ const Dropdwon = ({ options }) => {
   ));
 
   return (
-    <div>
+    <div ref={componentRef}>
       <div onClick={toggleOpen}>Select...</div>
       {open && <div>{renderedOptions}</div>}
     </div>
