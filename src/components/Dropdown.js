@@ -1,9 +1,21 @@
-import { useState } from "react";
-import { GoChevronDown } from "react-icons/go";
-import Panel from "./Panel";
+import { useState, useEffect, useRef } from 'react';
+import { GoChevronDown } from 'react-icons/go';
+import Panel from './Panel';
 
 const Dropdwon = ({ options, value, onChange }) => {
   const [isOpen, setOpen] = useState(false);
+  const componentRef = useRef();
+
+  useEffect(() => {
+    const checkToCloseDropDown = (event) => {
+      if (!componentRef.current) return;
+      if (!componentRef.current.contains(event.target)) setOpen(false);
+    };
+
+    document.addEventListener('click', checkToCloseDropDown, true);
+
+    return () => document.removeEventListener('click', checkToCloseDropDown);
+  }, []);
 
   const toggleOpen = () => setOpen(!isOpen);
   const onSelect = (option) => {
@@ -21,10 +33,10 @@ const Dropdwon = ({ options, value, onChange }) => {
     </h5>
   ));
 
-  let labelPlaceHolder = value?.label || "Select...";
+  let labelPlaceHolder = value?.label || 'Select...';
 
   return (
-    <div className="w-48 relative">
+    <div ref={componentRef} className="w-48 relative">
       <Panel
         className="flex justify-between items-center cursor-pointer"
         onClick={toggleOpen}
