@@ -1,8 +1,13 @@
-import Dropdwon from './components/Dropdown';
-import { useState } from 'react';
+import Link from "./components/Link";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Link to="/buttons">Buttons</Link>
+      <Link to="/dropdown">Dropdown</Link>
+      <Link to="/accordions">Accordions</Link>
+    </div>
+  );
 }
 
 export default App;
