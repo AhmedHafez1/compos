@@ -1,8 +1,8 @@
-import Button from '../components/Button';
-import { AiTwotoneCar } from 'react-icons/ai';
-import { AiFillTablet } from 'react-icons/ai';
+import Button from "../components/Button";
+import { AiTwotoneCar } from "react-icons/ai";
+import { AiFillTablet } from "react-icons/ai";
 
-function Buttons() {
+function ButtonPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
@@ -35,4 +35,4 @@ function Buttons() {
   );
 }
 
-export default Buttons;
+export default ButtonPage;
